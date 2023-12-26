@@ -111,7 +111,7 @@ function classifyToxicityText() {
   const textInput = document.getElementById("textInputToxicity").value;
   const resultContainer = document.querySelector(".infoToxicity");
 
-  fetch("https://multiclass-classification.vercel.app:5001/toxicity", {
+  fetch("https://multiclass-classification.vercel.app/toxicity", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
