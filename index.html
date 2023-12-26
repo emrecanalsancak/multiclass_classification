@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Multi-Class Classification</title>
+    <link rel="icon" href="imgs/icon.png" type="image/x-icon" />
+    <script defer src="script.js"></script>
+    <script defer src="factsData.js"></script>
+  </head>
+
+  <body class="modal-closed">
+    <div class="container">
+      <!-- First Column -->
+      <div class="section" id="dog-breed-section">
+        <!-- Content for the dog breed section -->
+        <img class="dog-img" src="imgs/cutedog.jpg" alt="Dog image" />
+        <div class="overlay">
+          <h2>Dog Breed Classification</h2>
+          <button id="dog-breed-button" style="display: none">
+            Upload Image
+          </button>
+        </div>
+        <!-- Your existing upload and classification code goes here -->
+      </div>
+
+      <!-- Second Column -->
+      <div class="section" id="veggie-section">
+        <img src="imgs/veggie.png" alt="veggie img" class="veggie-img" />
+
+        <!-- Content for the veggie section -->
+        <div class="overlay">
+          <h2>Vegetable/Fruit Classification</h2>
+          <button id="veggie-button" style="display: none">Upload Image</button>
+          <!-- Your second classification content goes here -->
+        </div>
+      </div>
+
+      <!-- Third Column -->
+      <div class="section" id="toxicity-expression-section">
+        <img src="imgs/toxic.jpg" alt="toxicity exp img" class="toxicity-img" />
+
+        <div class="overlay">
+          <h2>Toxicity</h2>
+          <button id="toxicity-expression-button" style="display: none">
+            Upload Image
+          </button>
+          <!-- Your third classification content goes here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Dog Breed Modal Overlay -->
+    <div class="dog-breed-modal-overlay" id="dogModalOverlay">
+      <div class="dog-breed-modal">
+        <!-- Close Button -->
+        <a class="link-2 close-dog-breed-modal"></a>
+
+        <!-- Modal Content -->
+        <div class="dog-breed-modal-content">
+          <h3 id="modalTitle">Dog Breed Classifier</h3>
+          <div id="initialContent" class="text-center">
+            <button
+              class="fileBtn"
+              onclick="document.getElementById('fileInputDog').click()"
+            >
+              Upload File
+            </button>
+            <input
+              type="file"
+              id="fileInputDog"
+              class="fileInputDog"
+              accept=".jpg, .jpeg, .png"
+              style="margin-bottom: 10px; display: none"
+              onchange="handleDogImageUpload()"
+            />
+            <button
+              class="classifyBtn glowing-btn"
+              onclick="classifyDogImage()"
+            >
+              <span class="glowing-test"
+                ><span class="faulty-letter" faulty-letter>C</span>la<span
+                  class="faulty-letter"
+                  faulty-letter
+                  >s</span
+                >sif<span class="faulty-letter" faulty-letter>y</span></span
+              >
+            </button>
+          </div>
+          <div
+            id="resultContainer"
+            class="result-container resultContainerDog"
+            style="display: none"
+          >
+            <!-- Centered container for the uploaded image -->
+            <div class="centered-container">
+              <img
+                id="uploadedImage"
+                alt="Uploaded Image"
+                class="uploaded-image uploadedImageDog"
+              />
+            </div>
+
+            <!-- Prediction container -->
+            <div class="prediction-container">
+              <div id="result" class="resultDog"></div>
+            </div>
+          </div>
+        </div>
+        <div class="info-container">
+          <div id="info" class="infoDog"></div>
+        </div>
+        <!-- content -->
+      </div>
+      <!-- modal -->
+    </div>
+
+    <!-- overlay -->
+
+    <!-- Veggie Image Modal Overlay -->
+    <div class="veggie-modal-overlay" id="veggieModalOverlay">
+      <div class="veggie-modal">
+        <!-- Close Button -->
+        <a class="link-2 close-veggie-modal"></a>
+
+        <!-- Modal Content -->
+        <div class="veggie-modal-content">
+          <h3 id="modalTitle">Vegetable/Fruit Classifier</h3>
+          <div id="initialContent" class="text-center">
+            <button
+              class="fileBtn"
+              onclick="document.getElementById('fileInputVeggie').click()"
+            >
+              Upload File
+            </button>
+            <input
+              type="file"
+              class="fileInputVeggie"
+              id="fileInputVeggie"
+              accept=".jpg, .jpeg, .png"
+              style="margin-bottom: 10px; display: none"
+              onchange="handleVeggieImageUpload()"
+            />
+            <button
+              class="classifyBtn glowing-btn"
+              onclick="classifyVeggieImage()"
+            >
+              <span class="glowing-test"
+                ><span class="faulty-letter" faulty-letter>C</span>la<span
+                  class="faulty-letter"
+                  faulty-letter
+                  >s</span
+                >sif<span class="faulty-letter" faulty-letter>y</span></span
+              >
+            </button>
+          </div>
+          <div
+            id="resultContainer"
+            class="result-container resultContainerVeggie"
+            style="display: none"
+          >
+            <!-- Centered container for the uploaded image -->
+            <div class="centered-container">
+              <img
+                id="uploadedImage"
+                alt="Uploaded Image"
+                class="uploaded-image uploadedImageVeggie"
+              />
+            </div>
+
+            <!-- Prediction container -->
+            <div class="prediction-container">
+              <div id="result" class="resultVeggie"></div>
+            </div>
+          </div>
+        </div>
+        <div class="info-container">
+          <div id="info" class="infoVeggie"></div>
+        </div>
+        <!-- content -->
+      </div>
+      <!-- modal -->
+    </div>
+
+    <!-- overlay -->
+
+    <!-- Toxicity Exp Modal Overlay -->
+    <div class="toxicity-modal-overlay" id="toxicityModalOverlay">
+      <div class="toxicity-modal">
+        <!-- Close Button -->
+
+        <a class="link-2 close-toxicity-modal"></a>
+
+        <!-- Modal Content -->
+        <div class="toxicity-modal-content">
+          <h3 id="modalTitle">Toxicity</h3>
+          <div id="initialContent" class="text-center initialToxicity">
+            <div class="toxicityInputBox">
+              <input
+                type="text"
+                id="textInputToxicity"
+                class="textInputToxicity"
+                placeholder="Calculate Toxicity."
+              />
+            </div>
+            <button
+              class="classifyBtn glowing-btn"
+              onclick="classifyToxicityText()"
+            >
+              <span class="glowing-test"
+                ><span class="faulty-letter" faulty-letter>C</span>la<span
+                  class="faulty-letter"
+                  faulty-letter
+                  >s</span
+                >sif<span class="faulty-letter" faulty-letter>y</span></span
+              >
+            </button>
+          </div>
+          <div
+            id="resultContainer"
+            class="result-container resultContainerToxicity"
+            style="display: none"
+          >
+            <!-- Centered container for the uploaded image -->
+            <div class="centered-container">
+              <div id="toxicityResults" class="toxicity-results"></div>
+            </div>
+
+            <!-- Prediction container -->
+            <div class="prediction-container">
+              <div id="result" class="resultToxicity"></div>
+            </div>
+          </div>
+        </div>
+        <div class="info-container, info-container-toxicity">
+          <div id="info" class="infoToxicity"></div>
+        </div>
+        <!-- content -->
+      </div>
+      <!-- modal -->
+    </div>
+
+    <!-- overlay -->
+  </body>
+</html>
