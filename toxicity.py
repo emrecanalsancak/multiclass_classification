@@ -7,7 +7,7 @@ from keras.layers import TextVectorization
 
 app = Flask(__name__)
 CORS(
-    app, resources={r"/*": {"origins": "https://multiclass-classification.netlify.app"}}
+    app, resources={r"/*": {"origins": "https://multiclass-classification.vercel.app"}}
 )
 
 loaded_toxic_model = tf.keras.models.load_model("models/toxicity.h5")

@@ -111,7 +111,7 @@ function classifyToxicityText() {
   const textInput = document.getElementById("textInputToxicity").value;
   const resultContainer = document.querySelector(".infoToxicity");
 
-  fetch("https://multiclass-backend.vercel.app/toxicity", {
+  fetch("https://multiclass-classification.vercel.app/toxicity", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -143,7 +143,7 @@ function classifyDogImage() {
     var formData = new FormData();
     formData.append("image", file);
 
-    fetch("https://multiclass-backend.vercel.app/classify", {
+    fetch("https://multiclass-classification.vercel.app/classify", {
       method: "POST",
       body: formData,
     })
@@ -180,7 +180,7 @@ function classifyVeggieImage() {
     var formData = new FormData();
     formData.append("image", file);
 
-    fetch("https://multiclass-backend.vercel.app/classifyveggie", {
+    fetch("https://multiclass-classification.vercel.app/classifyveggie", {
       method: "POST",
       body: formData,
     })

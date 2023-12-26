@@ -6,7 +6,7 @@ from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__)
 CORS(
-    app, resources={r"/*": {"origins": "https://multiclass-classification.netlify.app"}}
+    app, resources={r"/*": {"origins": "https://multiclass-classification.vercel.app"}}
 )
 
 loaded_model = tf.keras.models.load_model("models/dogbreed.h5")
