@@ -56,7 +56,7 @@ def index():
 
 
 @app.route("/classifyveggie", methods=["POST"])
-def classify_dog():
+def classify_veggie():
     if request.method == "POST" and "image" in request.files:
         uploaded_file = request.files["image"]
         img = Image.open(uploaded_file)
