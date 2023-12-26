@@ -64,4 +64,5 @@ def classify_toxicity():
     return jsonify({"error": "Invalid request"})
 
 
-app = app
+if __name__ == "__main__":
+    app.run()
